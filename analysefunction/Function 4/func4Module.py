@@ -1,3 +1,15 @@
+#function 1
+def dictionary_of_metrics(items):
+
+  ### Code Here
+    return{'mean': np.mean(np.array(items)),
+         'median':np.median(np.array(items)),
+         'variance' : np.var(np.array(items),ddof=1),
+         'standard deviation': np.std(np.array(items),ddof=1),
+         'min': min(np.array(items)),
+         'max': max(np.array(items))}
+#end of function 1 
+
 def extract_municipality_hashtags(df):
 
   municipality_dict ={ '@CityofCTAlerts' : 'Cape Town',
