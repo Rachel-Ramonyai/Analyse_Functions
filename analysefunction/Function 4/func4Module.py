@@ -1,3 +1,37 @@
+#function 1
+def dictionary_of_metrics(items):
+
+  ### Code Here
+    return{'mean': np.round(np.mean(np.array(items)),2),
+         'median':np.median(np.array(items)),
+         'variance' : np.round(np.var(np.array(items),ddof=1),2),
+         'standard deviation': np.round(np.std(np.array(items),ddof=1),2),
+         'min': min(np.array(items)),
+         'max': max(np.array(items))}
+#end of function 1 
+
+#function 2
+ def five_num_summ(items):
+
+  return {'max': max(items),
+          'median': np.median(items),
+          'min': min(items),
+          'q1': np.quantile(items, q= 0.25),
+          'q3': np.quantile(items, q= 0.75)}
+#End of function 2
+
+
+#function 3
+def date_parser(dates):
+
+  ### Code Here
+    storage = []
+    for i in dates:
+            stor_var = i.split()
+            storage.append(stor_var[0])
+    return storage  
+#end of function 3
+#function 4
 def extract_municipality_hashtags(df):
 
   municipality_dict ={ '@CityofCTAlerts' : 'Cape Town',
@@ -35,3 +69,34 @@ def extract_municipality_hashtags(df):
             if values in finder_values:
                 df_working.at[index, 'municipality'] = values
     return df_working
+#End of function 4
+
+
+#Function 5
+def number_of_tweets_per_day(df):
+
+    df_copy = df.copy(deep = True)
+    df_copy['Date'] = pd.to_datetime(df_copy['Date']).dt.date
+    byDate_copy = df_copy.groupby('Date').count().copy(deep = True)
+
+    return byDate_copy
+
+#End of function 5
+
+#start function 6
+ df['Split Tweets']=df['Tweets'].str.lower().str.split(" ")
+
+    return df
+#End function 6
+
+#function 7
+
+def stop_words_remover(df):
+   
+    # your code here
+    def tweets(row):    
+        return [word for word in row.lower().split() if word not in stop_words_dict['stopwords']]
+    df['Without Stop Words'] = df['Tweets'].apply(tweets)
+    return df
+
+#end if function 7 
