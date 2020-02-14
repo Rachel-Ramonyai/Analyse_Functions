@@ -59,3 +59,14 @@ def extract_municipality_hashtags(df):
                 df_working.at[index, 'municipality'] = values
     return df_working
 #End of function 4
+
+#Function 5
+def number_of_tweets_per_day(df):
+
+    df_copy = df.copy(deep = True)
+    df_copy['Date'] = pd.to_datetime(df_copy['Date']).dt.date
+    byDate_copy = df_copy.groupby('Date').count().copy(deep = True)
+
+    return byDate_copy
+
+#End of function 5
