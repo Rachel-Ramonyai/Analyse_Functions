@@ -1,3 +1,15 @@
+#function 2
+ def five_num_summ(items):
+
+  return {'max': max(items),
+          'median': np.median(items),
+          'min': min(items),
+          'q1': np.quantile(items, q= 0.25),
+          'q3': np.quantile(items, q= 0.75)}
+#End of function 2
+
+
+#function 4
 def extract_municipality_hashtags(df):
 
   municipality_dict ={ '@CityofCTAlerts' : 'Cape Town',
@@ -35,3 +47,4 @@ def extract_municipality_hashtags(df):
             if values in finder_values:
                 df_working.at[index, 'municipality'] = values
     return df_working
+#End of function 4
