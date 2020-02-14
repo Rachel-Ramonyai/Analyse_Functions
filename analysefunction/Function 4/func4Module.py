@@ -2,10 +2,10 @@
 def dictionary_of_metrics(items):
 
   ### Code Here
-    return{'mean': np.mean(np.array(items)),
+    return{'mean': np.round(np.mean(np.array(items)),2),
          'median':np.median(np.array(items)),
-         'variance' : np.var(np.array(items),ddof=1),
-         'standard deviation': np.std(np.array(items),ddof=1),
+         'variance' : np.round(np.var(np.array(items),ddof=1),2),
+         'standard deviation': np.round(np.std(np.array(items),ddof=1),2),
          'min': min(np.array(items)),
          'max': max(np.array(items))}
 #end of function 1 
@@ -20,6 +20,17 @@ def dictionary_of_metrics(items):
           'q3': np.quantile(items, q= 0.75)}
 #End of function 2
 
+
+#function 3
+def date_parser(dates):
+
+  ### Code Here
+    storage = []
+    for i in dates:
+            stor_var = i.split()
+            storage.append(stor_var[0])
+    return storage  
+#end of function 3
 #function 4
 def extract_municipality_hashtags(df):
 
@@ -60,8 +71,22 @@ def extract_municipality_hashtags(df):
     return df_working
 #End of function 4
 
+<<<<<<< HEAD
 #start function 6
  df['split tweets']=df['Tweets'].str.lower().str.split(" ")
 
     return df
 #End function 6
+=======
+#Function 5
+def number_of_tweets_per_day(df):
+
+    df_copy = df.copy(deep = True)
+    df_copy['Date'] = pd.to_datetime(df_copy['Date']).dt.date
+    byDate_copy = df_copy.groupby('Date').count().copy(deep = True)
+
+    return byDate_copy
+
+#End of function 5
+
+>>>>>>> 538728ce3d8b121aae21fd99d94d5f8df80a6eda
