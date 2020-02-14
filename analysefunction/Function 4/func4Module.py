@@ -59,3 +59,9 @@ def extract_municipality_hashtags(df):
                 df_working.at[index, 'municipality'] = values
     return df_working
 #End of function 4
+
+#start function 6
+ df['split tweets']=df['Tweets'].str.lower().str.split(" ")
+
+    return df
+#End function 6
