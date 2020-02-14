@@ -2,10 +2,10 @@
 def dictionary_of_metrics(items):
 
   ### Code Here
-    return{'mean': np.mean(np.array(items)),
+    return{'mean': np.round(np.mean(np.array(items)),2),
          'median':np.median(np.array(items)),
-         'variance' : np.var(np.array(items),ddof=1),
-         'standard deviation': np.std(np.array(items),ddof=1),
+         'variance' : np.round(np.var(np.array(items),ddof=1),2),
+         'standard deviation': np.round(np.std(np.array(items),ddof=1),2),
          'min': min(np.array(items)),
          'max': max(np.array(items))}
 #end of function 1 
