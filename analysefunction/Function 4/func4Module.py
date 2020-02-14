@@ -84,7 +84,7 @@ def number_of_tweets_per_day(df):
 #End of function 5
 
 #start function 6
- df['split tweets']=df['Tweets'].str.lower().str.split(" ")
+ df['Split Tweets']=df['Tweets'].str.lower().str.split(" ")
 
     return df
 #End function 6
