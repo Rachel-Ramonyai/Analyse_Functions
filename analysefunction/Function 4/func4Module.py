@@ -20,6 +20,17 @@ def dictionary_of_metrics(items):
           'q3': np.quantile(items, q= 0.75)}
 #End of function 2
 
+
+#function 3
+def date_parser(dates):
+
+  ### Code Here
+    storage = []
+    for i in dates:
+            stor_var = i.split()
+            storage.append(stor_var[0])
+    return storage  
+#end of function 3
 #function 4
 def extract_municipality_hashtags(df):
 
@@ -70,3 +81,4 @@ def number_of_tweets_per_day(df):
     return byDate_copy
 
 #End of function 5
+
