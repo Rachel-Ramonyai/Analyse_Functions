@@ -25,10 +25,11 @@ def dictionary_of_metrics(items):
 def date_parser(dates):
 
   ### Code Here
-    storage = []
+    storage = []   #create an empty list
+    #iterate through dates
     for i in dates:
-            stor_var = i.split()
-            storage.append(stor_var[0])
+            stor_var = i.split()            #split the list of strings 
+            storage.append(stor_var[0])     #storing the date
     return storage  
 #end of function 3
 #function 4
