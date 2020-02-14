@@ -88,3 +88,15 @@ def number_of_tweets_per_day(df):
 
     return df
 #End function 6
+
+#function 7
+
+def stop_words_remover(df):
+   
+    # your code here
+    def tweets(row):    
+        return [word for word in row.lower().split() if word not in stop_words_dict['stopwords']]
+    df['Without Stop Words'] = df['Tweets'].apply(tweets)
+    return df
+
+#end if function 7 
