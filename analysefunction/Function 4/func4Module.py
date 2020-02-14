@@ -71,13 +71,7 @@ def extract_municipality_hashtags(df):
     return df_working
 #End of function 4
 
-<<<<<<< HEAD
-#start function 6
- df['split tweets']=df['Tweets'].str.lower().str.split(" ")
 
-    return df
-#End function 6
-=======
 #Function 5
 def number_of_tweets_per_day(df):
 
@@ -89,4 +83,8 @@ def number_of_tweets_per_day(df):
 
 #End of function 5
 
->>>>>>> 538728ce3d8b121aae21fd99d94d5f8df80a6eda
+#start function 6
+ df['split tweets']=df['Tweets'].str.lower().str.split(" ")
+
+    return df
+#End function 6
