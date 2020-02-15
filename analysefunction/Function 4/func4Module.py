@@ -29,7 +29,7 @@ def date_parser(dates):
     #iterate through dates
     for i in dates:
             stor_var = i.split()            #split the list of strings 
-            storage.append(stor_var[0])     #storing the date
+            storage.append(stor_var[0])     #adding the date to the list excluding the time
     return storage  
 #end of function 3
 #function 4
