@@ -119,4 +119,4 @@ def stop_words_remover(df):
         return [word for word in row.lower().split() if word not in stop_words_dict['stopwords']]
     df['Without Stop Words'] = df['Tweets'].apply(tweets)
     return df
-#end if function 7 
+#end if function 7  
