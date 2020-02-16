@@ -16,53 +16,47 @@ def dictionary_of_metrics(items):
 ### END FUNCTION
 #end of function 1 
 
-#function 2
-def five_num_summ(items):
-  ### Code Here 
-    return {'max': max(items),
-            'median': np.median(items),
-            'min': min(items),
-            'q1': np.quantile(items, q= 0.25),
-            'q3': np.quantile(items, q= 0.75)}
+#Function 2
+ def five_num_summ(items):
+
+  return {'max': max(items),
+          'median': np.median(items),
+          'min': min(items),
+          'q1': np.quantile(items, q= 0.25),
+          'q3': np.quantile(items, q= 0.75)}
 #End of function 2
 
 
-#function 3
+#Function 3
 def date_parser(dates):
-  ### Code Here
+
     storage = []
     for i in dates:
-        stor_var = i.split()
-        storage.append(stor_var[0])
+            stor_var = i.split()
+            storage.append(stor_var[0]) 
     return storage  
-#end of function 3
+#End of function 3
 
-#function 4
-### START FUNCTION
+#Function 4
 def extract_municipality_hashtags(df):
 
-    municipality_dict ={ '@CityofCTAlerts' : 'Cape Town',
-                '@CityPowerJhb' : 'Johannesburg',
-                '@eThekwiniM' : 'eThekwini' ,
-                '@EMMInfo' : 'Ekurhuleni',
-                '@centlecutility' : 'Mangaung',
-                '@NMBmunicipality' : 'Nelson Mandela Bay',
-                '@CityTshwane' : 'Tshwane'}
-    df_working = df.copy(deep = True)
-    finder_keys = list(municipality_dict.keys())
-    finder_values = list(municipality_dict.values())
-    finder = '|'.join(finder_keys +finder_values) 
-    
+    '''
+    This function takes a dataframe of tweets consisting of two columns (Tweets and Dates respectively)
+    and returns a dataframe with with two new columns added: municipality; hashtags.
+
+    municipality: this column contains the municipality mentioned in the tweet as per the supplied dictionary muni_dict.
+    hashtags: this column contains the hashtags contained in the tweet.
+    '''
     df_working = df.copy(deep = True)
     finder_keys = list(mun_dict.keys())
     finder_values = list(mun_dict.values())
     finder = '|'.join(finder_keys +finder_values)
-    df_working.insert(2, 'municipality', df.Tweets.str.contains(finder).replace((True,False),('', np.nan)))
-    df_working.insert(3, 'hashtags', df.Tweets.str.contains('#').replace((True, False),('', np.nan)))
-    finder_municipality = df_working[df.Tweets.str.contains(finder) == True].index.to_list()
-    finder_tags = df_working[df.Tweets.str.contains('#') == True].index.to_list()
+    df_working.insert(2, 'municipality', df.Tweets.str.contains(finder).replace((True,False),('', np.nan))) #creates a column entry containing an empty string where a municipality (as defined by muni_dict) is present in the tweet. Otherwise returns NaN value.
+    df_working.insert(3, 'hashtags', df.Tweets.str.contains('#').replace((True, False),('', np.nan)))   #creates a column entry containing an empty string if hashtags are present in the tweet. Otherwise returns NaN value. 
+    finder_municipality = df_working[df.Tweets.str.contains(finder) == True].index.to_list()    #creates a list of indexes where municipalities have been indetified as per muni_dict
+    finder_tags = df_working[df.Tweets.str.contains('#') == True].index.to_list()   #creates a list of indexes where hashtags are present in the tweet
     
-    for index in finder_tags:
+    for index in finder_tags:   #stores the hashtags identified in a tweet as a list (tempy) and assigns that value to the hashtags column for that tweets's row index
         tempy = []
         magic = df_working.at[index, 'Tweets'].lower().split()
         for items in magic:
@@ -77,19 +71,20 @@ def extract_municipality_hashtags(df):
                         df_working.at[index, 'hashtags'] = tempy
                         stop =-1
                     else: stop+=1
-    for index in finder_municipality:
+    for index in finder_municipality:   #identifies the municipality identified in the tweet and either returns the muni_dict dictionary value at that key in the dictionary or directly assigns the value to the municipality column at that tweet's row index 
         magic = df_working.at[index, 'Tweets'].split()
         for items in magic:
             if items in finder_keys:
                 df_working.at[index, 'municipality'] = mun_dict[items]
             elif items in finder_values:
                 df_working.at[index, 'municipality'] = items
-            elif items[-1]  == ':' :
+            elif items[-1]  == ':' : #helps properly identify a dictionary key/value if the last entry in that items string is ':'
                 finder_2 = items[:-1]
                 if finder_2 in finder_keys:
                     df_working.at[index, 'municipality'] = mun_dict[finder_2]
                 elif finder_2 in finder_values:
                     df_working.at[index, 'municipality'] = finder_2
+                    
     return df_working
 #End of function 4
 
@@ -97,15 +92,21 @@ def extract_municipality_hashtags(df):
 #Function 5
 def number_of_tweets_per_day(df):
 
+    '''
+    Function groups tweets by date and counts the number of tweets for that day/date
+    ''''
+
     df_copy = df.copy(deep = True)
-    df_copy['Date'] = pd.to_datetime(df_copy['Date']).dt.date
+    df_copy['Date'] = pd.to_datetime(df_copy['Date']).dt.date  #returns date only,cutting tweet time
     byDate_copy = df_copy.groupby('Date').count().copy(deep = True)
+
     return byDate_copy
+
 #End of function 5
 
-#start function 6
-def word_spliter(df):
-    df['Split Tweets']=df['Tweets'].str.lower().str.split(" ")
+#Function 6
+ df['split tweets']=df['Tweets'].str.lower().str.split(" ")
+
     return df
 #End function 6
 
@@ -119,4 +120,4 @@ def stop_words_remover(df):
         return [word for word in row.lower().split() if word not in stop_words_dict['stopwords']]
     df['Without Stop Words'] = df['Tweets'].apply(tweets)
     return df
-#end if function 7  
+#end if function 7
