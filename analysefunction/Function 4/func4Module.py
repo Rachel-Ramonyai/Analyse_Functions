@@ -17,6 +17,10 @@ def dictionary_of_metrics(items):
 #end of function 1 
 
 #Function 2
+
+'''''
+This function takes in a list of integers and returns a dictionary
+'''''
  def five_num_summ(items):
 
   return {'max': max(items),
@@ -105,6 +109,10 @@ def number_of_tweets_per_day(df):
 #End of function 5
 
 #Function 6
+
+''''
+This function splits a sentence into a list of the separate words, it takes in a dataframe and return a data with a new column
+''''
  df['split tweets']=df['Tweets'].str.lower().str.split(" ")
 
     return df
