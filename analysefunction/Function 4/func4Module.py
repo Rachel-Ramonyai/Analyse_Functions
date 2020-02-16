@@ -1,12 +1,19 @@
 #function 1
+### START FUNCTION
 def dictionary_of_metrics(items):
-  ### Code Here
+    """ 
+    Write a function that calculates the mean, median, variance, standard deviation, 
+    minimum and maximum of of list of items. You can assume the given list is contains 
+    only numerical entries.
+    """
+    # your code here
     return{'mean': np.round(np.mean(np.array(items)),2),
          'median':np.median(np.array(items)),
-         'variance' : np.round(np.var(np.array(items),ddof=1),2),
-         'standard deviation': np.round(np.std(np.array(items),ddof=1),2),
+         'var': np.round(np.var(np.array(items),ddof=1),2),
+         'std': np.round(np.std(np.array(items),ddof=1),2),
          'min': min(np.array(items)),
          'max': max(np.array(items))}
+### END FUNCTION
 #end of function 1 
 
 #function 2
@@ -104,7 +111,9 @@ def word_spliter(df):
 
 #function 7
 def stop_words_remover(df):
-   
+    """
+    function which removes english stop words from a tweet.
+    """
     # your code here
     def tweets(row):
         return [word for word in row.lower().split() if word not in stop_words_dict['stopwords']]
