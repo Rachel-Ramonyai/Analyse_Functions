@@ -11,7 +11,7 @@ def dictionary_of_metrics(items):
 #end of function 1 
 
 #function 2
- def five_num_summ(items):
+def five_num_summ(items):
 
   return {'max': max(items),
           'median': np.median(items),
@@ -31,20 +31,21 @@ def date_parser(dates):
             storage.append(stor_var[0])
     return storage  
 #end of function 3
+
 #function 4
 def extract_municipality_hashtags(df):
 
-  municipality_dict ={ '@CityofCTAlerts' : 'Cape Town',
-            '@CityPowerJhb' : 'Johannesburg',
-            '@eThekwiniM' : 'eThekwini' ,
-            '@EMMInfo' : 'Ekurhuleni',
-            '@centlecutility' : 'Mangaung',
-            '@NMBmunicipality' : 'Nelson Mandela Bay',
-            '@CityTshwane' : 'Tshwane'}
+    municipality_dict ={ '@CityofCTAlerts' : 'Cape Town',
+                '@CityPowerJhb' : 'Johannesburg',
+                '@eThekwiniM' : 'eThekwini' ,
+                '@EMMInfo' : 'Ekurhuleni',
+                '@centlecutility' : 'Mangaung',
+                '@NMBmunicipality' : 'Nelson Mandela Bay',
+                '@CityTshwane' : 'Tshwane'}
     df_working = df.copy(deep = True)
     finder_keys = list(municipality_dict.keys())
     finder_values = list(municipality_dict.values())
-    finder = '|'.join(finder_keys +finder_values)
+    finder = '|'.join(finder_keys +finder_values) 
     df_working.insert(2, 'municipality', df.Tweets.str.contains(finder).replace((True,False),('', np.nan)))
     df_working.insert(3, 'hashtags', df.Tweets.str.contains('#').replace((True, False),('', np.nan)))
     finder_municipality = df_working[df.Tweets.str.contains(finder) == True].index.to_list()
