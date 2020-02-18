@@ -1,23 +1,31 @@
-#function 1
-### START FUNCTION
+#Function 1
 def dictionary_of_metrics(items):
     """ 
     Write a function that calculates the mean, median, variance, standard deviation, 
     minimum and maximum of of list of items. You can assume the given list is contains 
     only numerical entries.
     """
-    # your code here
     return{'mean': np.round(np.mean(np.array(items)),2),
          'median':np.median(np.array(items)),
          'var': np.round(np.var(np.array(items),ddof=1),2),
          'std': np.round(np.std(np.array(items),ddof=1),2),
          'min': min(np.array(items)),
          'max': max(np.array(items))}
-### END FUNCTION
-#end of function 1 
+
+#End of function 1 
+
 
 #Function 2
+<<<<<<< HEAD
  def five_num_summ(items):
+=======
+
+'''
+This function takes in a list of integers and returns a dictionary
+'''
+def five_num_summ(items):
+
+>>>>>>> c05b3998e9dd64933e7b894ac18795f0e2c95097
     return {'max': max(items),
           'median': np.median(items),
           'min': min(items),
@@ -29,12 +37,14 @@ def dictionary_of_metrics(items):
 #Function 3
 def date_parser(dates):
 
-    storage = []
+    storage = [] #create an empty list to store the dates
+    #iterate through the parameter in order to access dates
     for i in dates:
-            stor_var = i.split()
-            storage.append(stor_var[0]) 
+            stor_var = i.split()   #splits the string 
+            storage.append(stor_var[0])    #adds the date to storage list excluding time
     return storage  
 #End of function 3
+
 
 #Function 4
 def extract_municipality_hashtags(df):
@@ -93,7 +103,7 @@ def number_of_tweets_per_day(df):
 
     '''
     Function groups tweets by date and counts the number of tweets for that day/date
-    ''''
+    '''
 
     df_copy = df.copy(deep = True)
     df_copy['Date'] = pd.to_datetime(df_copy['Date']).dt.date  #returns date only,cutting tweet time
@@ -103,20 +113,26 @@ def number_of_tweets_per_day(df):
 
 #End of function 5
 
+
 #Function 6
- df['split tweets']=df['Tweets'].str.lower().str.split(" ")
+def word_splitter(df):
+'''
+This function splits a sentence into a list of the separate words, it takes in a dataframe and return a data with a new column
+'''
+    df['split tweets']=df['Tweets'].str.lower().str.split(" ")
 
     return df
 #End function 6
 
-#function 7
+
+#Function 7
 def stop_words_remover(df):
     """
     function which removes english stop words from a tweet.
     """
-    # your code here
+    
     def tweets(row):
         return [word for word in row.lower().split() if word not in stop_words_dict['stopwords']]
     df['Without Stop Words'] = df['Tweets'].apply(tweets)
     return df
-#end if function 7
+#End of function 7
