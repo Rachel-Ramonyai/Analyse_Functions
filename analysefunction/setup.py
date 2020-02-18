@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name='analyseModule',
     version='1.0',
-    packages=find_packages(include=['Function 4']),
+    packages=find_packages(include=['analysepackage']),
     install_requires=['pandas', 'numpy'],
     url='https://github.com/londzy/Analyse_Functions/tree/example',
     license='MIT',
