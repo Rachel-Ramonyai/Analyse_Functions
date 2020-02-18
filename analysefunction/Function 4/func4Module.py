@@ -18,8 +18,7 @@ def dictionary_of_metrics(items):
 
 #Function 2
  def five_num_summ(items):
-
-  return {'max': max(items),
+    return {'max': max(items),
           'median': np.median(items),
           'min': min(items),
           'q1': np.quantile(items, q= 0.25),
