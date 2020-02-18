@@ -1,9 +1,9 @@
 #Function 1
 def dictionary_of_metrics(items):
     """ 
-    Write a function that calculates the mean, median, variance, standard deviation, 
-    minimum and maximum of of list of items. You can assume the given list is contains 
-    only numerical entries.
+    Function that calculates the mean, median, variance, standard deviation, 
+    minimum and maximum of of list of items. this function takes in list of items and it returns calculated
+    measures of central tendency.
     """
     return{'mean': np.round(np.mean(np.array(items)),2),
          'median':np.median(np.array(items)),
@@ -16,16 +16,10 @@ def dictionary_of_metrics(items):
 
 
 #Function 2
-<<<<<<< HEAD
- def five_num_summ(items):
-=======
-
+def five_num_summ(items):
 '''
 This function takes in a list of integers and returns a dictionary
 '''
-def five_num_summ(items):
-
->>>>>>> c05b3998e9dd64933e7b894ac18795f0e2c95097
     return {'max': max(items),
           'median': np.median(items),
           'min': min(items),
@@ -102,7 +96,7 @@ def extract_municipality_hashtags(df):
 def number_of_tweets_per_day(df):
 
     '''
-    Function groups tweets by date and counts the number of tweets for that day/date
+    Function groups tweets by date and counts the number of tweets for that day/date.
     '''
 
     df_copy = df.copy(deep = True)
@@ -117,7 +111,8 @@ def number_of_tweets_per_day(df):
 #Function 6
 def word_splitter(df):
 '''
-This function splits a sentence into a list of the separate words, it takes in a dataframe and return a data with a new column
+This function splits a sentence into a list of the separate words, it takes in a dataframe and return a 
+data with a new column
 '''
     df['split tweets']=df['Tweets'].str.lower().str.split(" ")
 
@@ -128,9 +123,10 @@ This function splits a sentence into a list of the separate words, it takes in a
 #Function 7
 def stop_words_remover(df):
     """
-    function which removes english stop words from a tweet.
+    Function that removes english stop words from a tweet.
+    It takes in the dataframe that has column with tweets
+    it returns dataframe with column that has tweets without the stop words.
     """
-    
     def tweets(row):
         return [word for word in row.lower().split() if word not in stop_words_dict['stopwords']]
     df['Without Stop Words'] = df['Tweets'].apply(tweets)
