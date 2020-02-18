@@ -116,7 +116,13 @@ def extract_municipality_hashtags(df):
 def number_of_tweets_per_day(df):
 
     '''
-    Function groups tweets by date and counts the number of tweets for that day/date.
+    Function calculates the number of tweets that were posted per  day
+
+    Args:
+        A pandas dataframe
+
+    Returns:
+        A  new dataframe grouped by Date with a Date column as well as number of tweets for that date/day
     '''
 
     df_copy = df.copy(deep = True)
