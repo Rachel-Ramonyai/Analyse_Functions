@@ -54,7 +54,7 @@ def date_parser(dates):
     storage = [] #create an empty list to store the dates
     #iterate through the parameter in order to access dates
     for i in dates:
-            stor_var = i.split()   #splits the string 
+            stor_var = i.split()   #splits the string
             storage.append(stor_var[0])    #adds the date to storage list excluding time
     return storage  
 #End of function 3
