@@ -29,7 +29,27 @@ This function takes in a list of integers and returns a dictionary
 
 
 #Function 3
+
+
+
 def date_parser(dates):
+    '''
+    Creating a list of dates only wihout the time 
+
+    Args:
+        dates (string) : A list containing a string of dates that contain both the time and the date
+    
+    Returns:
+        dates (string) : A list containing a string of dates without the time
+
+    Example:
+         >>>>>> dates=['2019-11-29 12:50:54',
+         '2019-11-29 12:46:53']
+
+         ['2019-11-29',2019-11-29]
+
+
+    '''
 
     storage = [] #create an empty list to store the dates
     #iterate through the parameter in order to access dates
