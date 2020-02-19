@@ -99,10 +99,10 @@ Returns:
 
 This function removes english stop words from a tweets. The function returns a modified dataframe with a new column ('Without Stop Words) containing the split tweets from the 'Tweets' column without the stop words contained in the dictionary 'stop_words_dict'.
 
-**Function Specifications:**
-Args:
-    df(dataframe): A pandas dataframe consisting of two columns (Tweets, Date)
-Returns:
+**Function Specifications:**  
+Args:  
+    df(dataframe): A pandas dataframe consisting of two columns (Tweets, Date)  
+Returns:  
     The function returns a modified version of the dataframe with a new column ('Without Stop Words'). This column contains the tweets from the 'Tweets' column as a list without the stop words definned in 'stop_words_dict'.
 
 # How To Use
