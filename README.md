@@ -81,7 +81,7 @@ Returns:
     by_Date_copy(dataframe): A new dataframe grouped by Date with a Date column as well as number of tweets for that date/day
 
 
-# Function 6: Word Splitter
+## Function 6: Word Splitter
     word_splitter(df)
     
 This function splits tweets in the 'Tweets' column of the dataframe into a list of the separate words. The function then returns a modified dataframe with a new column `'Split Tweets'` containing the split tweets.
@@ -92,7 +92,7 @@ Args:
 Returns:  
     The function returns a modified dataframe with a new column ('Split Tweets'). This column contains the tokenized tweets from the 'Tweets' column.
 
-# Function 7: Stop Words
+## Function 7: Stop Words
     stop_words_remover(df)
 
 This function removes english stop words from a tweets. The function returns a modified dataframe with a new column ('Without Stop Words) containing the split tweets from the 'Tweets' column without the stop words contained in the dictionary 'stop_words_dict'.
