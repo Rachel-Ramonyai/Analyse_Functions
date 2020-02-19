@@ -14,6 +14,11 @@ Functions are important in reducing the replication of code as well as giving th
 - Numpy
 - Pandas
 
+### Defaults
+- Twitter data dataframe: twitter_df
+- Dictionary of english stopwords: stop_words_dict
+- Dates for twitter tweets: dates
+
 ## Function 1: Metric Dictionary
 Write a function that calculates the mean, median, variance, standard deviation, minimum and maximum of of list of items. You can assume the given list is contains only numerical entries, and you may use numpy functions to do this.
 
