@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='analyseModule',
-    version='1.0',
+    version='1.4',
     packages=find_packages(include=['analysepackage']),
     install_requires=['pandas', 'numpy'],
     url='https://github.com/londzy/Analyse_Functions',
