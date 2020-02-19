@@ -18,7 +18,14 @@ def dictionary_of_metrics(items):
 #Function 2
 def five_num_summ(items):
 '''
-This function takes in a list of integers and returns a dictionary
+Function that calculates the mean, median,
+minimum, maximum, quantile1 and quantile3.  
+
+Arg:
+   this function takes in list of integers
+   
+Returns:
+   it returns a dictionary
 '''
     return {'max': max(items),
           'median': np.median(items),
