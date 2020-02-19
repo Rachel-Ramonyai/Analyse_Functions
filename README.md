@@ -1,8 +1,8 @@
 # Analyse Predict
 
-This module was created to work with:
-    1) a Pandas dataframe containing tweets
-    2) a Pandas dataframe containing Eskom data
+This module was created to work with:  
+    1) a Pandas dataframe containing tweets  
+    2) a Pandas dataframe containing Eskom data  
 The aim of this module is two extract insights from Eskom data/variables.The module itself is composed of seven different functions. The use of these functions is detailed below.
 
 ### Modules needed
