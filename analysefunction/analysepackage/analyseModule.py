@@ -66,9 +66,14 @@ stop_words_dict = {
 #Function 1
 def dictionary_of_metrics(items):
     """ 
-    Function that calculates the mean, median, variance, standard deviation, 
-    minimum and maximum of of list of items. this function takes in list of items and it returns calculated
-    measures of central tendency.
+    Function that calculates the mean, median, variance, standard deviation
+    minimum and maximum of of list of items.
+
+    Args:
+        items: which is a list of items.
+
+    Returns: 
+        It returns calculated measures of central tendency.
     """
     return{'mean': np.round(np.mean(np.array(items)),2),
          'median':np.median(np.array(items)),
@@ -89,7 +94,8 @@ This function takes in a list of integers and returns a dictionary
           'median': np.median(items),
           'min': min(items),
           'q1': np.quantile(items, q= 0.25),
-          'q3': np.quantile(items, q= 0.75)}
+          'q3': np.quantile(items, q= 0.75)
+        }
 #End of function 2
 
 
@@ -215,8 +221,12 @@ data with a new column
 def stop_words_remover(df):
     """
     Function that removes english stop words from a tweet.
-    It takes in the dataframe that has column with tweets
-    it returns dataframe with column that has tweets without the stop words.
+
+    Args:
+        dataframe: It takes in the dataframe that has column with tweets
+
+    Returns:
+        new dataframe:it returns dataframe with column that has tweets without the stop words.
     """
     def tweets(row):
         return [word for word in row.lower().split() if word not in stop_words_dict['stopwords']]
