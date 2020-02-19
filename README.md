@@ -1,96 +1,125 @@
 # Analyse Predict
 
-Functions are important in reducing the replication of code as well as giving the user the functionality of getting an ouput on varying inputs. The functions you will write all use Eskom data/variables.
-
-## Instructions to Students
-- **Do not add or remove cells in this notebook. Do not edit or remove the `### START FUNCTION` or `### END FUNCTION` comments. Do not add any code outside of the functions you are required to edit. Doing any of this will lead to a mark of 0%!**
-- Answer the questions according to the specifications provided.
-- Use the given cell in each question to to see if your function matches the expected outputs.
-- Do not hard-code answers to the questions.
-- The use of stackoverflow, google, and other online tools are permitted. However, copying fellow student's code is not permissible and is considered a breach of the Honour code. Doing this will result in a mark of 0%.
-- Good luck, and may the force be with you!
+This module was created to work with:
+    1) a Pandas dataframe containing tweets
+    2) a Pandas dataframe containing Eskom data
+The aim of this module is two extract insights from Eskom data/variables.The module itself is composed of seven different functions. The use of these functions is detailed below.
 
 ### Modules needed
 - Numpy
 - Pandas
 
-### Defaults
-- Twitter data dataframe: twitter_df
-- Dictionary of english stopwords: stop_words_dict
-- Dates for twitter tweets: dates
+# Function Components
+
+### Default Data
+The following data is available in this module in order to be used to illustrate the outputs one can expect from the functions therein: 
+    - Twitter data dataframe: twitter_df
+    - Dictionary of english stopwords: stop_words_dict
+    - Dates for twitter tweets: dates
+    - Metrics function testing string: gauteng
 
 ## Function 1: Metric Dictionary
-Write a function that calculates the mean, median, variance, standard deviation, minimum and maximum of of list of items. You can assume the given list is contains only numerical entries, and you may use numpy functions to do this.
+    dictionary_of_metrics(items)
+
+Function that calculates the mean, median, variance, standard deviation, minimum and maximum of a list of items. The functon itself takes in a list of items and returns calculated measures of central tendency. These metrics are returned in a dictionary containing: mean , median, standard deviation, variance , minimum value and maximum value.
 
 **Function Specifications:**
-- Function should allow a list as input.
-- It should return a `dict` with keys `'mean'`, `'median'`, `'std'`, `'var'`, `'min'`, and `'max'`, corresponding to the mean, median, standard deviation, variance, minimum and maximum of the input list, respectively.
-- The standard deviation and variance values must be unbiased. **Hint:** use the `ddof` parameter in the corresponding numpy functions!
-- All values in the returned `dict` should be rounded to 2 decimal places.
+Args:
+    items(list): a list containing data across which the metrics will be calculated.
+Returns:
+    A dictionary containing the following metrics: mean (mean), median (median), variance (var), standard deviation (std), minimum value (min), maximum value (max).
+
 
 ## Function 2: Five Number Summary
-Write a function which takes in a list of integers and returns a dictionary of the [five number summary.](https://www.statisticshowto.datasciencecentral.com/how-to-find-a-five-number-summary-in-statistics/).
+    five_num_summ(items)
+
+ This function also takes in a list of integers and calculates a five number summary. The function returns a dictionary containing the following metrics: maximum, median, minimum value, quartile 1 value and quartile 3 value
 
 **Function Specifications:**
-- The function should take a list as input.
-- The function should return a `dict` with keys `'max'`, `'median'`, `'min'`, `'q1'`, and `'q3'` corresponding to the maximum, median, minimum, first quartile and third quartile, respectively. You may use numpy functions to aid in your calculations.
-- All numerical values should be rounded to two decimal places.
+Args:
+    items(list): a list containing data across which the metrics will be calculated.
+Returns:
+    A dictionary of the following metrics: maximum value (max), median (median), minimum value (min), quartile 1 (q1), quartile 3 (q3).
+
 
 ## Function 3: Date Parser
-The `dates` variable (created at the top of this notebook) is a list of dates represented as strings. The string contains the date in `'yyyy-mm-dd'` format, as well as the time in `hh:mm:ss` formamt. The first three entries in this variable are:
-```python
-dates[:3] == [
-    '2019-11-29 12:50:54',
-    '2019-11-29 12:46:53',
-    '2019-11-29 12:46:10'
-]
-```
+    date_parser(dates)
 
-Write a function that takes as input a list of these datetime strings and returns only the date in `'yyyy-mm-dd'` format.
+This function takes in a list of dates represented as strings containing the date in the `'yyyy-mm-dd'` format, as well as time in the `hh:mm:ss` formamt. The function then returns these datetime strings as dates in the `'yyyy-mm-dd'` format.
 
 **Function Specifications:**
-- The function should take a list of strings as input.
-- Each string in the input list is formatted as `'yyyy-mm-dd hh:mm:ss'`.
-- The function should return a list of strings where each element in the returned list contains only the date in the `'yyyy-mm-dd'` format.
+Args:
+    dates (list of strings) : A list containing a string of dates that contain both the time and the date
+    
+Returns:
+    dates (list of strings) : A list containing a string of dates without the time
+    This output list is stored in the local variable 'storage'.
+
 
 ## Function 4: Municipality & Hashtag Detector
-Write a function which takes in a pandas dataframe and returns a modified dataframe that includes two new columns that contain information about the municipality and hashtag of the tweet.
+    extract_municipality_hashtags(df)
+
+This function takes a dataframe of tweets consisting of two columns (Tweets and Dates respectively) and returns a modified dataframe that includes two new columns that contain information about the municipality and hashtag of the tweet. These columns are named 'municipality' and 'hashtags' in the modified dataframe. The municipalities in the tweets are identified as per the dictionary muni_dict.
 
 **Function Specifications:**
-* Function should take a pandas `dataframe` as input.
-* Extract the municipality from a tweet using the `mun_dict` dictonary given below, and insert the result into a new column named `'municipality'` in the same dataframe.
-* Use the entry `np.nan` when a municipality is not found.
-* Extract a list of hashtags from a tweet into a new column named `'hashtags'` in the same dataframe.
-* Use the entry `np.nan` when no hashtags are found.
+Args:
+    df (dataframe): A pandas dataframe consisting of two Columns (Tweets, Dates)
+Returns:
+    pandas dataframe with two new columns
+    municipality: this column contains the municipality mentioned in the tweet as per the supplied dictionary muni_dict.
+    hashtags: this column contains the hashtags contained in the tweet.
 
-**Hint:** you will need to `mun_dict` variable defined at the top of this notebook.
 
 ## Function 5: Number of Tweets per Day
-Write a function which calculates the number of tweets that were posted per day. 
+    number_of_tweets_per_day(df)
+
+This function calculates the number of tweets that were posted per day. The date returned is given in the format 'yyyy-mm-dd` as a datetime object.
 
 **Function Specifications:**
-- It should take a pandas dataframe as input.
-- It should return a new dataframe, grouped by day, with the number of tweets for that day.
-- The index of the new dataframe should be named `Date`, and the column of the new dataframe should be `'Tweets'`, corresponding to the date and number of tweets, respectively.
-- The date should be formated as `yyyy-mm-dd`, and should be a datetime object. **Hint:** look up `pd.to_datetime` to see how to do this.
+Args:
+    df(dataframe): A pandas dataframe dataframe consisting of two Columns (Tweets, Dates)
+
+Returns:
+    by_Date_copy(dataframe): A new dataframe grouped by Date with a Date column as well as number of tweets for that date/day
+
 
 # Function 6: Word Splitter
-Write a function which splits the sentences in a dataframe's column into a list of the separate words. The created lists should be placed in a column named `'Split Tweets'` in the original dataframe. This is also known as [tokenization](https://www.geeksforgeeks.org/nlp-how-tokenizing-text-sentence-words-works/).
+    word_splitter(df)
+    
+This function splits tweets in the 'Tweets' column of the dataframe into a list of the separate words. The function then returns a modified dataframe with a new column `'Split Tweets'` containing the split tweets.
 
 **Function Specifications:**
-- It should take a pandas dataframe as an input.
-- The dataframe should contain a column, named `'Tweets'`.
-- The function should split the sentences in the `'Tweets'` into a list of seperate words, and place the result into a new column named `'Split Tweets'`. The resulting words must all be lowercase!
-- The function should modify the input dataframe directly.
-- The function should return the modified dataframe.
+Args:
+    df(dataframe): A dataframe consisting of two columns (Tweets, Date)
+Returns:
+    The function returns a modified dataframe with a new column ('Split Tweets'). This column contains the tokenized tweets from the 'Tweets' column.
 
 # Function 7: Stop Words
-Write a function which removes english stop words from a tweet.
+    stop_words_remover(df)
+
+This function removes english stop words from a tweets. The function returns a modified dataframe with a new column ('Without Stop Words) containing the split tweets from the 'Tweets' column without the stop words contained in the dictionary 'stop_words_dict'.
 
 **Function Specifications:**
-- It should take a pandas dataframe as input.
-- Should tokenise the sentences according to the definition in function 6. Note that function 6 **cannot be called within this function**.
-- Should remove all stop words in the tokenised list. The stopwords are defined in the `stop_words_dict` variable defined at the top of this notebook.
-- The resulting tokenised list should be placed in a column named `"Without Stop Words"`.
-- The function should modify the input dataframe.
-- The function should return the modified dataframe.
+Args:
+    df(dataframe): A pandas dataframe consisting of two columns (Tweets, Date)
+Returns:
+    The function returns a modified version of the dataframe with a new column ('Without Stop Words'). This column contains the tweets from the 'Tweets' column as a list without the stop words definned in 'stop_words_dict'.
+
+# How To Use
+
+## Installation
+The module can be installed via: 
+pip install git+https://github.com/londzy/Analyse_Functions.git
+
+## Module Import
+Module can be imported using:
+from analysepackage import analyseModule
+
+## Calling methods
+The functions in the module can be called as follows:
+analyseModule.five_num_summ()
+
+## Using Default Data
+The default data sets can be passed to the functons by calling them from analyseModule as follows:
+analyseModule.five_num_summ(analyseModule.gauteng)
+
