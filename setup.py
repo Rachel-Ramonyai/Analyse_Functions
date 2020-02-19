@@ -5,7 +5,7 @@ setup(
     version='1.0',
     packages=find_packages(include=['analysepackage']),
     install_requires=['pandas', 'numpy'],
-    url='https://github.com/londzy/Analyse_Functions/tree/example',
+    url='https://github.com/londzy/Analyse_Functions',
     license='MIT',
     author='Kwande Skaap; Tony Masombuka; Londiwe Cele; Tsholofelo Mautjana; Mmapule Rachel Ramonyai ',
     author_email='tonyhughmahlasedi@gmail.com; tshmau002@gmail.com; mmapulerachel@gmail.com; celelondiwe3@gmail.com; kwande.skaap@gmail.com',
